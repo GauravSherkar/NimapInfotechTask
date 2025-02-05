@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ASP.NETMVC.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+<span class="success-message">
+    @TempData["Insert"]
+    @TempData["Update"]
+    @TempData["Delete"]
+</span>
+<style>
+    .success-message {
+        color: Black;
+        font-weight: bold;
+        border: 1px solid green;
+        padding: 10px;
+        background-color: lightgreen;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<h2>Index</h2>
+<hr />
+<p>@Html.ActionLink("Create New Product", "Create")</p>
+<table>
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>CategoryId</th>
+            <th>CategoryName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Category.CategoryId</td>
+                <td>@item.Category.CategoryName</td>
+                <td></td>
+                <td>@Html.ActionLink("Update", "Edit", new { id = item.ProductId })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<div>
+    @if (ViewBag.Page > 1)
+    {
+       // <a href="@Url.Action("Index", new { page = 1, pageSize = ViewBag.PageSize })">First</a>
+        <a href="@Url.Action("Index", new { page = ViewBag.Page - 1, pageSize = ViewBag.PageSize })">Previous</a>
+    }
+
+    <span>Page @ViewBag.Page of @ViewBag.TotalPages</span>
+
+    @if (ViewBag.Page < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("Index", new { page = ViewBag.Page + 1, pageSize = ViewBag.PageSize })">Next</a>
+        //<a href="@Url.Action("Index", new { page = ViewBag.TotalPages, pageSize = ViewBag.PageSize })">Last</a>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+

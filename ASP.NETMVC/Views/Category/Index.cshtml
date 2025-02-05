@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ASP.NETMVC.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<span class="success-message">
+    @TempData["Insert"]
+    @TempData["Update"]
+    @TempData["Delete"]
+</span>  
+<style>
+    .success-message {
+        color: Black;
+        font-weight: bold;
+        border: 1px solid green;
+        padding: 10px;
+        background-color:lightgreen;
+        border-radius:5px;
+        margin-bottom:10px;
+    }
+</style>
+<h2>Index</h2>
+
+<p>@Html.ActionLink("Create New category", "Create")</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>CategoryId</th>
+            <th>CategoryName</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+         {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+
+                <td>@Html.ActionLink("Update", "Edit", new { id = item.CategoryId })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })</td>
+            </tr>
+         }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿﻿@model ASP.NETMVC.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<h4>Category</h4>
+<hr />
+
+     @using (Html.BeginForm())
+      {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.DisplayNameFor(model => model.CategoryName)
+            @Html.DisplayFor(model => model.CategoryName)
+        </div>
+        <div>
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+        </div>
+       }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
